@@ -1,0 +1,43 @@
+
+.service {
+  stroke-width: 8px;
+  fill: white;
+  stroke: #252d63;
+  overflow: hidden;
+}
+.server {
+  stroke-width:3;
+  fill: white;
+  stroke:black;"
+}
+
+.server:hover {
+
+}
+
+.server-label, .service-label {
+
+  cursor:pointer;
+  z-index: -1;
+}
+
+.grow-handle {
+
+    cursor:pointer;
+}
+.server-connection {
+  stroke:darkgrey;
+  stroke-width:10;
+  z-index: 0;
+  fill: none;
+}
+
+.selected-connection {
+  stroke:orange;
+}
+
+.selected-point {
+  fill:orange;
+  r:10;
+  cursor:pointer;
+}

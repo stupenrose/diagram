@@ -1,0 +1,89 @@
+<html>
+<script src="underscore-min.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="structure.js"></script>
+<script src="util.js"></script>
+<script src="distance-to-line-segment.js"></script>
+<script src="diagram.js"></script>
+<link href="styles.css" rel="stylesheet">
+
+<body style="margin:0px;padding:0px;height:100%;">
+
+<svg style="min-width:100%;min-height:100%;">
+
+</svg>
+
+</body>
+
+<script>
+
+function namedBox(name, selectorName, pres){
+
+  var svgTag = customSvg("service.svg", {
+    id:selectorName,
+    x:pres.x,
+    y:pres.y,
+    width:pres.width,
+    height:pres.height,
+    ".service":{
+      width:pres.width-10,
+      height:pres.height-10
+    }
+  });
+
+  svgTag.find(".service-label")
+    .text(name);
+
+  return svgTag;
+}
+
+function staticSvg(file){
+  return function(name, selectorName, pres){
+    return customSvg(file, {
+      id:selectorName,
+      width:pres.width,
+      height:pres.height,
+      x:pres.x,
+      y:pres.y
+    });
+  };
+}
+
+
+
+
+var typeViews = {
+  foolike:"drag-box.svg",
+  barlike:namedBox,
+  computer:"computer.svg",
+  rack:"server.svg",
+  database:"database.svg",
+
+  service:namedBox,
+  server:namedBox
+};
+
+var misc = [
+  {name:"foo", type:"computer"},
+  {name:"bar", type:"rack"},
+  {name:"baz", type:"database"},
+  {name:"larry", type:"barlike", children:[
+    {name:"bob", type:"barlike"}
+  ]}];
+
+var connections = [{
+  start:"bob",
+  end:"bar"
+}];
+
+
+  doDiagram({
+    diagramName:"Foo",
+    typeViews:typeViews,
+    objects:misc,
+    connections:connections,
+    root:$("svg"),
+    baseUrl:""
+  });
+</script>
+</html>
